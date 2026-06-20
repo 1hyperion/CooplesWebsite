@@ -418,6 +418,8 @@
     color: var(--text-on-paper-muted);
   }
   .footer-inner .wordmark{ color: var(--text-on-paper); font-size:18px; }
+  .footer-links a{ text-decoration:none; margin-right: 18px; }
+  .footer-links a:hover{ color: var(--text-on-paper); }
 
   :focus-visible{ outline: 2px solid var(--blush-deep); outline-offset: 3px; }
 </style>
@@ -556,6 +558,10 @@
 <footer>
   <div class="container footer-inner">
     <span class="wordmark">coople</span>
+    <div class="footer-links">
+      <a href="privacy.html">privacy policy</a>
+      <a href="terms.html">terms &amp; conditions</a>
+    </div>
     <span>made by astro developments · © 2026</span>
   </div>
 </footer>
