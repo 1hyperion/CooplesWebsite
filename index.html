@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>coople — a lock screen for two</title>
+<meta name="description" content="coople turns the lock screen into a tiny shared space for two people. doodle a hello, share a status, pick an animal that's just you.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💕</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #15131a;
+    --ink-deep: #0a090d;
+    --ink-soft: #211d27;
+    --blush: #e6a8bd;
+    --blush-deep: #c4778f;
+    --blush-bright: #f0bfd0;
+    --paper: #f7f2ee;
+    --paper-card: #ffffff;
+    --text-on-paper: #2a2530;
+    --text-on-paper-muted: #6f6670;
+    --mist: rgba(255,255,255,0.07);
+    --mist-border: rgba(255,255,255,0.14);
+    --text-on-ink-muted: rgba(244,240,247,0.62);
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--text-on-paper);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  img,canvas{ display:block; max-width:100%; }
+  a{ color: inherit; }
+  .container{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  .eyebrow{
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: absolute;
+    top:0; left:0; right:0;
+    z-index: 5;
+    padding: 28px 28px 0;
+  }
+  .nav-inner{
+    max-width: 1100px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 22px;
+    color: #fbeef3;
+    letter-spacing: 0.01em;
+  }
+  .nav-links a{
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration:none;
+    color: var(--text-on-ink-muted);
+    margin-left: 28px;
+    transition: color .2s;
+  }
+  .nav-links a:hover{ color:#fbeef3; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position: relative;
+    background: radial-gradient(ellipse 900px 560px at 50% 8%, #2c2433 0%, var(--ink) 48%, var(--ink-deep) 100%);
+    color: #f4f0f7;
+    padding: 132px 0 96px;
+    overflow: hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top: -120px; left:50%;
+    transform: translateX(-50%);
+    width: 640px; height: 640px;
+    background: radial-gradient(circle, rgba(230,168,189,0.20) 0%, rgba(230,168,189,0) 68%);
+    pointer-events:none;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .hero::before{ animation: breathe 7s ease-in-out infinite; }
+  }
+  @keyframes breathe{
+    0%,100%{ opacity:.7; transform: translateX(-50%) scale(1); }
+    50%{ opacity:1; transform: translateX(-50%) scale(1.06); }
+  }
+
+  .hero-inner{ position:relative; text-align:center; }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(34px, 6vw, 60px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 22px auto 20px;
+    max-width: 760px;
+  }
+  .hero h1 em{
+    font-style: italic;
+    font-weight: 500;
+    color: var(--blush-bright);
+  }
+  .hero p.sub{
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--text-on-ink-muted);
+    max-width: 480px;
+    margin: 0 auto 36px;
+  }
+  .eyebrow.on-ink{ color: var(--blush-bright); }
+
+  .cta-row{
+    display:flex;
+    gap:14px;
+    justify-content:center;
+    flex-wrap: wrap;
+    margin-bottom: 84px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding: 13px 26px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration:none;
+    transition: transform .15s ease, background .2s, color .2s;
+  }
+  .btn:active{ transform: scale(0.97); }
+  .btn-primary{
+    background: var(--blush);
+    color: #2a1620;
+  }
+  .btn-primary:hover{ background: var(--blush-bright); }
+  .btn-ghost{
+    border: 1px solid var(--mist-border);
+    color: #f4f0f7;
+    background: var(--mist);
+  }
+  .btn-ghost:hover{ background: rgba(255,255,255,0.13); }
+
+  /* ---------- DEMO (signature element) ---------- */
+  .demo-wrap{ text-align:center; }
+  .demo-clock{
+    font-family:'Space Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    color: var(--text-on-ink-muted);
+    margin-bottom: 18px;
+  }
+  .phones{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 28px;
+  }
+  .phone{
+    position:relative;
+    width: 168px;
+    height: 342px;
+    border-radius: 34px;
+    background: linear-gradient(160deg, #1d1923, #0f0d12);
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6), inset 0 0 0 6px rgba(255,255,255,0.02);
+    padding: 14px;
+    overflow:hidden;
+  }
+  .phone .island{
+    position:absolute;
+    top: 14px; left:50%;
+    transform: translateX(-50%);
+    width: 56px; height: 16px;
+    background: #050406;
+    border-radius: 10px;
+    z-index: 3;
+  }
+  .phone canvas{
+    width:100%; height:100%;
+    border-radius: 22px;
+    background: radial-gradient(ellipse at 50% 18%, #2b2333, #100d14 72%);
+    touch-action: none;
+    cursor: crosshair;
+  }
+  .phone .ph-label{
+    position:absolute;
+    bottom: 14px; left:0; right:0;
+    text-align:center;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244,240,247,0.5);
+    pointer-events:none;
+  }
+  .pulse-link{
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+    color: var(--blush);
+    width: 36px;
+  }
+  .pulse-link svg{ width:20px; height:20px; }
+  .pulse-dot{
+    width:5px; height:5px; border-radius:50%;
+    background: var(--blush);
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .pulse-link svg{ animation: thump 1.6s ease-in-out infinite; }
+  }
+  @keyframes thump{
+    0%,100%{ transform: scale(1); }
+    25%{ transform: scale(1.18); }
+    40%{ transform: scale(1); }
+  }
+  .demo-caption{
+    margin-top: 22px;
+    font-size: 14px;
+    color: var(--text-on-ink-muted);
+  }
+  .demo-caption button{
+    background:none; border:none;
+    color: var(--blush-bright);
+    font-size: 14px;
+    font-weight: 600;
+    cursor:pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding: 0 0 0 4px;
+    font-family: inherit;
+  }
+  @media (max-width: 480px){
+    .phone{ width: 124px; height: 254px; border-radius: 26px; }
+    .phones{ gap:16px; }
+  }
+
+  /* ---------- FEATURES (paper) ---------- */
+  section{ padding: 96px 0; }
+  .section-head{ text-align:center; max-width: 560px; margin: 0 auto 56px; }
+  .section-head h2{
+    font-family:'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 38px);
+    margin: 14px 0 0;
+    color: var(--text-on-paper);
+  }
+  .eyebrow.on-paper{ color: var(--blush-deep); }
+
+  .feature-grid{
+    display:flex;
+    gap: 22px;
+  }
+  .feature-card{
+    flex: 1;
+    background: var(--paper-card);
+    border: 1px solid rgba(42,37,48,0.08);
+    border-radius: 22px;
+    padding: 34px 28px;
+  }
+  .feature-icon{
+    font-size: 26px;
+    width: 52px; height:52px;
+    border-radius: 16px;
+    background: linear-gradient(160deg, #fbeaf0, #f3d6e0);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom: 20px;
+  }
+  .feature-card h3{
+    font-family:'Fraunces', serif;
+    font-weight: 600;
+    font-size: 21px;
+    margin: 0 0 10px;
+  }
+  .feature-card p{
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-on-paper-muted);
+    margin:0;
+  }
+  @media (max-width: 760px){
+    .feature-grid{ flex-direction: column; }
+  }
+
+  /* ---------- HOW IT WORKS ---------- */
+  .how{ background: #efe7e0; }
+  .steps{
+    display:flex;
+    gap: 36px;
+    position: relative;
+  }
+  .steps::before{
+    content:"";
+    position:absolute;
+    top: 21px; left: 8%; right: 8%;
+    height: 1px;
+    background: repeating-linear-gradient(to right, rgba(42,37,48,0.22) 0 6px, transparent 6px 12px);
+  }
+  .step{ position:relative; flex:1; }
+  .step-num{
+    width: 44px; height: 44px;
+    border-radius:50%;
+    background: var(--ink);
+    color: var(--blush-bright);
+    font-family:'Space Mono', monospace;
+    font-size: 15px;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom: 20px;
+    position: relative; z-index:1;
+  }
+  .step h3{
+    font-family:'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+  .step p{
+    font-size: 15px;
+    color: var(--text-on-paper-muted);
+    line-height: 1.6;
+    margin:0;
+  }
+  @media (max-width: 760px){
+    .steps{ flex-direction: column; gap: 28px; }
+    .steps::before{ display:none; }
+  }
+
+  /* ---------- SUPPORT / FAQ ---------- */
+  .support-grid{
+    display:flex;
+    gap: 56px;
+    align-items:flex-start;
+  }
+  .support-card{ flex: 1.1; }
+  .faqs{ flex: 1.4; }
+  .support-card{
+    background: var(--ink);
+    color: #f4f0f7;
+    border-radius: 24px;
+    padding: 36px 32px;
+  }
+  .support-card h3{
+    font-family:'Fraunces', serif;
+    font-size: 22px;
+    font-weight:600;
+    margin: 0 0 10px;
+  }
+  .support-card p{
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-on-ink-muted);
+    margin: 0 0 22px;
+  }
+  details{
+    border-bottom: 1px solid rgba(42,37,48,0.12);
+    padding: 18px 2px;
+  }
+  details:first-of-type{ border-top: 1px solid rgba(42,37,48,0.12); }
+  summary{
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    list-style:none;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 12px;
+  }
+  summary::-webkit-details-marker{ display:none; }
+  summary::after{
+    content:"+";
+    font-size: 20px;
+    color: var(--blush-deep);
+    flex-shrink:0;
+    transition: transform .2s;
+  }
+  details[open] summary::after{ transform: rotate(45deg); }
+  details p{
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-on-paper-muted);
+    margin: 12px 0 0;
+  }
+  @media (max-width: 760px){
+    .support-grid{ flex-direction: column; gap: 32px; }
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background: var(--paper);
+    padding: 36px 0 44px;
+    border-top: 1px solid rgba(42,37,48,0.10);
+  }
+  .footer-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--text-on-paper-muted);
+  }
+  .footer-inner .wordmark{ color: var(--text-on-paper); font-size:18px; }
+
+  :focus-visible{ outline: 2px solid var(--blush-deep); outline-offset: 3px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="wordmark">coople</span>
+    <div class="nav-links">
+      <a href="#features">what it does</a>
+      <a href="#how">pairing</a>
+      <a href="#support">support</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-inner">
+    <p class="eyebrow on-ink">an app for two</p>
+    <h1>say good morning before<br>they even <em>unlock</em> their phone</h1>
+    <p class="sub">coople turns the lock screen into a tiny shared space — a doodle, a mood, a little animal that's just you. one tap, and it's already there.</p>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:hello@coople.app?subject=Add%20me%20to%20the%20TestFlight">request testflight access</a>
+      <a class="btn btn-ghost" href="#how">see how it works</a>
+    </div>
+
+    <div class="demo-wrap">
+      <p class="demo-clock" id="demoClock">19:41</p>
+      <div class="phones">
+        <div class="phone">
+          <div class="island"></div>
+          <canvas id="canvasA" width="280" height="560" aria-label="Draw here with your mouse or finger"></canvas>
+          <p class="ph-label">you</p>
+        </div>
+        <div class="pulse-link" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.2-4.5-9.9-9.1C.5 8.8 1.7 5.6 4.6 4.4c2.2-.9 4.5-.2 5.9 1.6.4.5.9 1.1 1.5 1.9.6-.8 1.1-1.4 1.5-1.9 1.4-1.8 3.7-2.5 5.9-1.6 2.9 1.2 4.1 4.4 2.5 7.5C19.2 16.5 12 21 12 21z"/></svg>
+          <span class="pulse-dot"></span>
+        </div>
+        <div class="phone">
+          <div class="island"></div>
+          <canvas id="canvasB" width="280" height="560" aria-label="Mirrors what you draw, with a short delay"></canvas>
+          <p class="ph-label">them</p>
+        </div>
+      </div>
+      <p class="demo-caption">try it — draw something on the left <button id="clearDemo" type="button">clear</button></p>
+    </div>
+  </div>
+</header>
+
+<section id="features">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow on-paper">what it does</p>
+      <h2>three small ways to feel close</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">✏️</div>
+        <h3>draw something</h3>
+        <p>sketch a quick doodle with your finger and send it. it shows up on their lock screen in seconds — faster than a text, and it means more.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💭</div>
+        <h3>share a status</h3>
+        <p>driving, sleeping, thinking of you — set what you're up to with one tap, and they'll know without having to ask.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🦊</div>
+        <h3>pick your animal</h3>
+        <p>choose an avatar that's just yours. your partner sees it everywhere in the app, so it always, instantly feels like you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="how">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow on-paper">pairing</p>
+      <h2>built for exactly two people</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>open coople, get your code</h3>
+        <p>a single 6-character code is generated just for the two of you — no account, no sign-up form.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>send it to your person</h3>
+        <p>text it, say it out loud, write it on a napkin — however you'd like to get it to them.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>they enter it, you're paired</h3>
+        <p>that's it. from then on, anything either of you sends finds its way to the other's lock screen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="support">
+  <div class="container support-grid">
+    <div class="support-card">
+      <h3>need a hand?</h3>
+      <p>if something's not working, or your pairing code isn't landing, write to us directly — we read every message ourselves.</p>
+      <a class="btn btn-primary" href="mailto:hello@coople.app?subject=Coople%20support">hello@coople.app</a>
+    </div>
+    <div class="faqs">
+      <details open>
+        <summary>is my data private?</summary>
+        <p>coople only ever connects exactly two people at a time. there are no public profiles, no friend lists, and nothing you send is visible to anyone outside your pair.</p>
+      </details>
+      <details>
+        <summary>what if i lose my pairing?</summary>
+        <p>email us at hello@coople.app with both names on the account and we'll help you get reconnected — it usually takes a few minutes.</p>
+      </details>
+      <details>
+        <summary>does it work on android?</summary>
+        <p>not yet. coople is built natively around iOS lock screen widgets, so for now it's iPhone only.</p>
+      </details>
+      <details>
+        <summary>i found a bug</summary>
+        <p>thank you — truly. send a quick note to hello@coople.app describing what happened and which iPhone you're on, and we'll dig in.</p>
+      </details>
+      <details>
+        <summary>how do i delete my data?</summary>
+        <p>email hello@coople.app from the address associated with your pairing and we'll remove your records within a few days.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <span class="wordmark">coople</span>
+    <span>made by astro developments · © 2026</span>
+  </div>
+</footer>
+
+<script>
+  // live clock, mimicking a real lock screen
+  function tick(){
+    const d = new Date();
+    const h = String(d.getHours()).padStart(2,'0');
+    const m = String(d.getMinutes()).padStart(2,'0');
+    document.getElementById('demoClock').textContent = h+':'+m;
+  }
+  tick(); setInterval(tick, 1000*15);
+
+  // ---- dual-canvas live "send" demo ----
+  const cA = document.getElementById('canvasA');
+  const cB = document.getElementById('canvasB');
+  const ctxA = cA.getContext('2d');
+  const ctxB = cB.getContext('2d');
+  [ctxA, ctxB].forEach(ctx => {
+    ctx.strokeStyle = '#f0bfd0';
+    ctx.lineWidth = 7;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+  });
+
+  let drawing = false;
+  let last = null;
+  const queue = [];
+  const DELAY = 280; // ms before a stroke segment "arrives" on phone B
+
+  function getPos(canvas, evt){
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const point = evt.touches ? evt.touches[0] : evt;
+    return {
+      x: (point.clientX - rect.left) * scaleX,
+      y: (point.clientY - rect.top) * scaleY
+    };
+  }
+
+  function startDraw(evt){
+    drawing = true;
+    last = getPos(cA, evt);
+    evt.preventDefault();
+  }
+  function moveDraw(evt){
+    if(!drawing) return;
+    const pos = getPos(cA, evt);
+    ctxA.beginPath();
+    ctxA.moveTo(last.x, last.y);
+    ctxA.lineTo(pos.x, pos.y);
+    ctxA.stroke();
+    queue.push({x0:last.x, y0:last.y, x1:pos.x, y1:pos.y, t: performance.now()});
+    last = pos;
+    evt.preventDefault();
+  }
+  function endDraw(){ drawing = false; }
+
+  cA.addEventListener('mousedown', startDraw);
+  cA.addEventListener('mousemove', moveDraw);
+  window.addEventListener('mouseup', endDraw);
+  cA.addEventListener('touchstart', startDraw, {passive:false});
+  cA.addEventListener('touchmove', moveDraw, {passive:false});
+  cA.addEventListener('touchend', endDraw);
+
+  function drain(){
+    const now = performance.now();
+    while(queue.length && now - queue[0].t >= DELAY){
+      const s = queue.shift();
+      ctxB.beginPath();
+      ctxB.moveTo(s.x0, s.y0);
+      ctxB.lineTo(s.x1, s.y1);
+      ctxB.stroke();
+    }
+    requestAnimationFrame(drain);
+  }
+  requestAnimationFrame(drain);
+
+  document.getElementById('clearDemo').addEventListener('click', () => {
+    ctxA.clearRect(0,0,cA.width,cA.height);
+    ctxB.clearRect(0,0,cB.width,cB.height);
+    queue.length = 0;
+  });
+</script>
+
+</body>
+</html>
