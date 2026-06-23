@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>privacy policy — coople</title>
-<meta name="description" content="Coople's privacy policy: what we collect, how it's used, and how to delete your data.">
+<meta name="description" content="Coople's privacy policy: what we collect, including location, how it's used, and how to delete your data.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💕</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,14 +39,21 @@
   .eyebrow{ font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blush-deep); }
   h1{ font-family:'Fraunces', serif; font-weight: 600; font-size: clamp(32px, 5vw, 44px); margin: 14px 0 6px; }
   .updated{ font-size: 14px; color: var(--text-on-paper-muted); }
+  .updated strong{ color: var(--text-on-paper); }
 
   main{ padding-bottom: 90px; }
-  section{ margin-bottom: 38px; }
-  h2{ font-family:'Fraunces', serif; font-weight: 600; font-size: 22px; margin: 0 0 14px; }
-  p, li{ font-size: 16px; line-height: 1.7; color: var(--text-on-paper); margin: 0 0 14px; }
-  ul{ padding-left: 20px; margin: 0 0 14px; }
+  section{ margin-bottom: 42px; }
+  h2{ font-family:'Fraunces', serif; font-weight: 600; font-size: 23px; margin: 0 0 14px; display:flex; gap:10px; align-items:baseline; }
+  h2 .num{ color: var(--blush-deep); font-family:'Inter',sans-serif; font-weight:700; font-size:16px; }
+  h3{ font-size: 17px; font-weight: 600; margin: 22px 0 10px; }
+  p, li{ font-size: 16px; line-height: 1.75; color: var(--text-on-paper); margin: 0 0 14px; }
+  ul, ol{ padding-left: 22px; margin: 0 0 14px; }
   li{ margin-bottom: 8px; }
   strong{ font-weight: 600; }
+  table{ width:100%; border-collapse: collapse; margin: 0 0 20px; font-size: 15px; }
+  th{ text-align:left; font-weight:600; padding: 10px 12px; border-bottom: 2px solid rgba(42,37,48,0.15); }
+  td{ padding: 10px 12px; border-bottom: 1px solid rgba(42,37,48,0.08); vertical-align: top; color: var(--text-on-paper-muted); }
+  td:first-child{ color: var(--text-on-paper); font-weight: 500; white-space: nowrap; }
 
   .callout{
     background: var(--paper-card);
@@ -56,6 +63,28 @@
     margin: 0 0 38px;
   }
   .callout p{ margin:0; font-size: 15px; color: var(--text-on-paper-muted); }
+
+  .toc{
+    background: var(--paper-card);
+    border: 1px solid rgba(42,37,48,0.08);
+    border-radius: 16px;
+    padding: 26px 28px;
+    margin: 0 0 44px;
+  }
+  .toc h2{ font-size: 16px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-on-paper-muted); margin-bottom: 14px; font-family:'Inter',sans-serif; }
+  .toc ol, .toc ul{ columns: 2; column-gap: 28px; padding-left: 18px; }
+  .toc li{ font-size: 14px; margin-bottom: 9px; break-inside: avoid; list-style: none; }
+  .toc a{ color: var(--text-on-paper); text-decoration: none; }
+  .toc a:hover{ color: var(--blush-deep); }
+  @media (max-width: 600px){ .toc ol, .toc ul{ columns: 1; } }
+
+  .legal-note{
+    border-left: 3px solid var(--blush);
+    padding: 4px 0 4px 18px;
+    margin: 18px 0;
+    font-size: 14px;
+    color: var(--text-on-paper-muted);
+  }
 
   footer{ background: var(--paper); padding: 36px 0 44px; border-top: 1px solid rgba(42,37,48,0.10); }
   .footer-inner{ max-width:760px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px; color: var(--text-on-paper-muted); }
@@ -78,81 +107,194 @@
 <header class="doc-head container">
   <p class="eyebrow">legal</p>
   <h1>privacy policy</h1>
-  <p class="updated">effective June 20, 2026</p>
+  <p class="updated">Effective date: <strong>June 21, 2026</strong> &nbsp;·&nbsp; Last reviewed: <strong>June 21, 2026</strong></p>
 </header>
 
 <main class="container">
 
   <div class="callout">
-    <p>Short version: Coople only ever connects two people. We don't sell data, we don't show ads, and we don't know your name unless you email us. Everything below explains exactly what's collected and why.</p>
+    <p><strong>Plain-language summary</strong> (this does not replace the policy below): Coople connects exactly two people. We collect the content you choose to send your partner, your approximate location if you enable it, and technical identifiers needed to deliver content and notifications. We do not sell data, show ads, or share information with third parties for marketing. You can request a copy or deletion of your data at any time by emailing us.</p>
   </div>
 
-  <section>
-    <h2>Who we are</h2>
-    <p>Coople is made by Astro Developments. If you have any questions about this policy or how your information is handled, you can reach us at <a href="mailto:hello@coople.app">hello@coople.app</a>.</p>
-  </section>
-
-  <section>
-    <h2>Information we collect</h2>
-    <p><strong>Account and pairing information.</strong> When you open Coople, Apple's CloudKit assigns your device an anonymous record identifier tied to your iCloud account. We use this identifier — not your name or email — to link you to your partner once you pair. We also store the date you paired and the 6-character invite code used to do so.</p>
-    <p><strong>Content you share.</strong> Photos, drawings, status updates, and the animal avatar you choose are stored so they can be delivered to your paired partner's lock screen. This content is visible only to the one partner you're paired with — never to us, the public, or any other user.</p>
-    <p><strong>Device and delivery information.</strong> We store a push notification token so your partner's device can be woken to display new content. We may also receive basic crash and performance diagnostics (device model, iOS version) to fix bugs — this never includes the content of what you've shared.</p>
-  </section>
-
-  <section>
-    <h2>Information we don't collect</h2>
+  <nav class="toc" aria-label="Table of contents">
+    <h2>Contents</h2>
     <ul>
-      <li>Your name or email address (unless you choose to email support)</li>
-      <li>Your location</li>
-      <li>Your contacts or address book</li>
-      <li>Browsing history or activity outside the app</li>
-      <li>Advertising identifiers — Coople shows no ads and does no ad tracking</li>
+      <li><a href="#scope">1. Scope &amp; Data Controller</a></li>
+      <li><a href="#definitions">2. Definitions</a></li>
+      <li><a href="#collect">3. Information We Collect</a></li>
+      <li><a href="#location">4. Location Information</a></li>
+      <li><a href="#legalbasis">5. Legal Bases for Processing</a></li>
+      <li><a href="#use">6. How We Use Your Information</a></li>
+      <li><a href="#transfers">7. International Data Transfers</a></li>
+      <li><a href="#sharing">8. Disclosure of Information</a></li>
+      <li><a href="#retention">9. Data Retention</a></li>
+      <li><a href="#rights">10. Your Rights</a></li>
+      <li><a href="#children">11. Children's Privacy</a></li>
+      <li><a href="#security">12. Security</a></li>
+      <li><a href="#automated">13. Automated Decision-Making</a></li>
+      <li><a href="#changes">14. Changes to This Policy</a></li>
+      <li><a href="#authority">15. Supervisory Authority</a></li>
+      <li><a href="#contact">16. Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <section id="scope">
+    <h2><span class="num">1.</span> Scope &amp; Data Controller</h2>
+    <p>This Privacy Policy ("Policy") describes how Astro Developments ("Astro Developments," "we," "us," or "our"), the developer of the mobile application Coople (the "App" or "Service"), collects, uses, discloses, and safeguards information in connection with your use of the App. This Policy applies to all users of the App worldwide and is intended to satisfy our disclosure obligations under, among other frameworks, the EU General Data Protection Regulation 2016/679 ("GDPR"), Romania's implementing legislation, the California Consumer Privacy Act as amended ("CCPA/CPRA"), and Apple Inc.'s App Store Review Guidelines and Privacy requirements.</p>
+    <p>For the purposes of the GDPR, Astro Developments acts as the <strong>data controller</strong> with respect to the personal data described in this Policy. Apple Inc. acts as an independent data processor and, in certain respects, an independent controller with respect to the underlying iCloud and CloudKit infrastructure on which the App is built; Apple's own privacy practices are described at <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a> and are not within our control.</p>
+    <p>By downloading, installing, or using the App, you acknowledge that you have read and understood this Policy. If you do not agree with this Policy, you should not use the App.</p>
+  </section>
+
+  <section id="definitions">
+    <h2><span class="num">2.</span> Definitions</h2>
+    <table>
+      <tr><th>Term</th><th>Meaning</th></tr>
+      <tr><td>"Personal Data"</td><td>Any information relating to an identified or identifiable natural person, as defined under GDPR Art. 4(1).</td></tr>
+      <tr><td>"Processing"</td><td>Any operation performed on Personal Data, including collection, storage, use, transmission, and deletion.</td></tr>
+      <tr><td>"Pairing" / "Pair"</td><td>The one-to-one connection established between two users of the App via a unique invitation code.</td></tr>
+      <tr><td>"Content"</td><td>Photographs, drawings, status updates, animal-avatar selections, and any other material a user transmits through the App.</td></tr>
+      <tr><td>"You" / "User"</td><td>The natural person using the App, whether as the pairing initiator or the joining partner.</td></tr>
+    </table>
+  </section>
+
+  <section id="collect">
+    <h2><span class="num">3.</span> Information We Collect</h2>
+
+    <h3>3.1 Information You Provide Directly</h3>
+    <ul>
+      <li><strong>Content.</strong> Photographs, drawings rendered within the App, status selections (e.g., "sleeping," "driving"), and your chosen animal avatar.</li>
+      <li><strong>Pairing data.</strong> The single-use invitation code generated when a pairing is created, and the date a pairing is established.</li>
+      <li><strong>Support correspondence.</strong> If you contact us by email, we receive your email address, the contents of your message, and any information you voluntarily include.</li>
+    </ul>
+
+    <h3>3.2 Information Collected Automatically</h3>
+    <ul>
+      <li><strong>Account identifiers.</strong> An anonymous, app-specific record identifier issued by Apple's CloudKit service and associated with your iCloud account. This identifier does not include your Apple ID, name, or email address.</li>
+      <li><strong>Device and push tokens.</strong> A device-specific push notification token (APNs token), used solely to deliver content and status updates to your paired partner's lock screen and to wake the application in the background for that purpose.</li>
+      <li><strong>Diagnostic information.</strong> Basic technical metadata such as device model, operating system version, and app version, collected only if and when a crash or technical fault occurs.</li>
+    </ul>
+
+    <h3>3.3 Information We Do Not Collect</h3>
+    <p>We do not request, collect, or store your name, email address, phone number, government-issued identification, payment information, contacts/address book, browsing history outside the App, advertising identifiers, or biometric data. The App contains no advertising SDKs and no third-party analytics or tracking software.</p>
+  </section>
+
+  <section id="location">
+    <h2><span class="num">4.</span> Location Information</h2>
+    <p>If you enable the optional distance feature, the App requests <strong>"When In Use"</strong> location access through Apple's standard system permission prompt. The following limitations apply by design:</p>
+    <ul>
+      <li><strong>Approximate only.</strong> Coordinates are rounded to two decimal places (approximately 1.1 km / 0.7 mile precision) before they are ever transmitted off your device. Your exact, precise location is never collected or stored by us.</li>
+      <li><strong>Foreground, one-off capture.</strong> The App requests a single location snapshot only while you are actively using it. We do not use continuous, background, or "Always" location tracking, and the App does not request that level of access from your device.</li>
+      <li><strong>Purpose-limited.</strong> Rounded location data is used solely to calculate and display the approximate distance between you and your paired partner, both within the App and on associated widgets. It is not used for any other purpose, including advertising, analytics, or profiling.</li>
+      <li><strong>Optional and revocable.</strong> Location sharing is off by default and requires your affirmative action to enable. You may disable it at any time via Settings → Privacy &amp; Security → Location Services → Coople, or by revoking access entirely. If disabled, the distance feature simply stops functioning; no other feature of the App is affected.</li>
+    </ul>
+    <p>Your rounded location, if enabled, is shared only with the one partner in your pairing and is stored alongside your status information for only as long as it remains current (see Section 9, Data Retention).</p>
+  </section>
+
+  <section id="legalbasis">
+    <h2><span class="num">5.</span> Legal Bases for Processing</h2>
+    <p>Where the GDPR applies, we rely on the following legal bases under Article 6(1):</p>
+    <table>
+      <tr><th>Processing Activity</th><th>Legal Basis</th></tr>
+      <tr><td>Delivering content between paired users; operating core App functionality</td><td>Performance of a contract (Art. 6(1)(b)) — necessary to provide the Service you requested</td></tr>
+      <tr><td>Location-based distance calculation</td><td>Consent (Art. 6(1)(a)) — obtained via the iOS system permission prompt, revocable at any time</td></tr>
+      <tr><td>Crash diagnostics and security monitoring</td><td>Legitimate interests (Art. 6(1)(f)) — maintaining the stability and security of the Service</td></tr>
+      <tr><td>Responding to support requests</td><td>Legitimate interests (Art. 6(1)(f)) and, where applicable, performance of a contract</td></tr>
+    </table>
+  </section>
+
+  <section id="use">
+    <h2><span class="num">6.</span> How We Use Your Information</h2>
+    <p>We use the information described above exclusively to:</p>
+    <ol>
+      <li>Establish and maintain the pairing between you and your partner;</li>
+      <li>Transmit, store, and render Content (including photographs, drawings, and status updates) on the recipient's lock screen, home screen widgets, and within the App;</li>
+      <li>Calculate and display approximate distance between paired users, where location sharing is enabled;</li>
+      <li>Send push notifications that alert your partner to new Content, status changes, or attention requests ("nudges");</li>
+      <li>Diagnose, debug, and maintain the technical reliability of the App; and</li>
+      <li>Respond to support inquiries you submit to us.</li>
+    </ol>
+    <p>We do not use your information to serve advertising, to build behavioral profiles, or to make any decision that produces legal effects concerning you.</p>
+  </section>
+
+  <section id="transfers">
+    <h2><span class="num">7.</span> International Data Transfers</h2>
+    <p>The App is built on Apple's CloudKit platform, and accordingly your data is stored on servers operated by Apple, which may be located outside of your country of residence, including outside the European Economic Area ("EEA"). Apple represents that it implements appropriate safeguards for such transfers, including reliance on the European Commission's Standard Contractual Clauses or other legally recognized transfer mechanisms where required by applicable law. We do not control, and accept no responsibility for, the specific data-center locations or transfer mechanisms used by Apple's infrastructure; users seeking further detail should consult Apple's own privacy and data-transfer disclosures.</p>
+  </section>
+
+  <section id="sharing">
+    <h2><span class="num">8.</span> Disclosure of Information</h2>
+    <p>We do not sell, rent, or trade your Personal Data. We do not share it with data brokers, advertising networks, or third parties for marketing purposes. Information is disclosed only in the following limited circumstances:</p>
+    <ul>
+      <li><strong>To your paired partner.</strong> By design, Content and status information you choose to send is visible to the single partner in your pairing.</li>
+      <li><strong>To Apple Inc.</strong> As our infrastructure provider for storage (CloudKit), authentication, and push notification delivery (APNs), strictly to operate the Service.</li>
+      <li><strong>For legal compliance.</strong> Where required to comply with a valid legal obligation, court order, or governmental request, or to protect the rights, property, or safety of Astro Developments, our users, or the public.</li>
+      <li><strong>Business transfers.</strong> In the event of a merger, acquisition, or sale of assets, user information may be transferred as part of that transaction, subject to equivalent confidentiality protections.</li>
     </ul>
   </section>
 
-  <section>
-    <h2>How we use your information</h2>
-    <p>Information is used exclusively to operate the core function of Coople: delivering what you send to the one partner you're paired with, rendering your lock screen widget, and sending the push notification that triggers that update. We do not use your content or pairing data for analytics, advertising, or any purpose beyond running the service.</p>
+  <section id="retention">
+    <h2><span class="num">9.</span> Data Retention</h2>
+    <p>We retain Personal Data only for as long as reasonably necessary to fulfil the purposes outlined in this Policy:</p>
+    <ul>
+      <li>Pairing and Content data are retained for as long as your pairing remains active.</li>
+      <li>Location data, where enabled, is retained only as the most recent known position and is overwritten on each subsequent update; it is not stored as a historical log.</li>
+      <li>Support correspondence is retained for as long as reasonably necessary to resolve your inquiry and for a limited period thereafter for record-keeping purposes.</li>
+    </ul>
+    <p>Upon a verified deletion request (see Section 10), we will delete or anonymize your Personal Data within thirty (30) days, except where retention is required by applicable law.</p>
   </section>
 
-  <section>
-    <h2>Where your data lives</h2>
-    <p>All content and pairing data is stored on Apple's CloudKit infrastructure, within Apple's iCloud ecosystem. Apple's own privacy practices govern the underlying infrastructure layer; you can read about those at <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>
+  <section id="rights">
+    <h2><span class="num">10.</span> Your Rights</h2>
+    <p>Subject to applicable law, and in particular where the GDPR applies, you have the right to:</p>
+    <ul>
+      <li><strong>Access</strong> the Personal Data we hold about you (Art. 15);</li>
+      <li><strong>Rectify</strong> inaccurate or incomplete Personal Data (Art. 16);</li>
+      <li><strong>Erase</strong> your Personal Data ("right to be forgotten") (Art. 17);</li>
+      <li><strong>Restrict</strong> processing under certain circumstances (Art. 18);</li>
+      <li><strong>Data portability</strong> — to receive your Personal Data in a structured, machine-readable format (Art. 20);</li>
+      <li><strong>Object</strong> to processing carried out on the basis of legitimate interests (Art. 21);</li>
+      <li><strong>Withdraw consent</strong> at any time where processing is based on consent, including by disabling Location Services for the App, without affecting the lawfulness of processing prior to withdrawal.</li>
+    </ul>
+    <p>If you are a California resident, you have broadly equivalent rights under the CCPA/CPRA, including the right to know, delete, and correct personal information, and the right to non-discrimination for exercising these rights. We do not "sell" or "share" personal information as those terms are defined under the CCPA/CPRA.</p>
+    <p>To exercise any of these rights, contact us using the details in Section 16. We will respond within the timeframes required by applicable law (generally one month under the GDPR, extendable by a further two months for complex requests).</p>
   </section>
 
-  <section>
-    <h2>Sharing your information</h2>
-    <p>We do not sell, rent, or share your information with advertisers or other third parties. Your shared content is only ever visible to the one partner you're paired with.</p>
+  <section id="children">
+    <h2><span class="num">11.</span> Children's Privacy</h2>
+    <p>The App is not directed at, and is not intended for use by, individuals under the age of sixteen (16). We do not knowingly collect Personal Data from children. If we become aware that we have inadvertently collected Personal Data from a child without appropriate consent, we will take reasonable steps to delete such data promptly. Parents or guardians who believe their child has provided us with Personal Data should contact us using the details in Section 16.</p>
   </section>
 
-  <section>
-    <h2>How long we keep your data</h2>
-    <p>Your pairing and content are retained for as long as your account remains paired and active. If you'd like everything deleted, email <a href="mailto:hello@coople.app">hello@coople.app</a> from the address associated with your pairing and we'll remove your records, typically within a few days.</p>
+  <section id="security">
+    <h2><span class="num">12.</span> Security</h2>
+    <p>We rely on Apple's CloudKit infrastructure, which applies encryption in transit (TLS) and at rest, and which scopes data access to the authenticated iCloud account associated with each device. Access to your pairing record is restricted, at the database level, to the two paired accounts. While we take reasonable measures consistent with industry practice, no method of electronic transmission or storage is completely secure, and we cannot guarantee absolute security.</p>
   </section>
 
-  <section>
-    <h2>Your rights</h2>
-    <p>Depending on where you live, you may have the right to access, correct, export, or delete the information we hold about you, and to object to or restrict certain processing. To exercise any of these rights, contact us at <a href="mailto:hello@coople.app">hello@coople.app</a>. If you're in the European Economic Area, you also have the right to lodge a complaint with your local data protection authority.</p>
+  <section id="automated">
+    <h2><span class="num">13.</span> Automated Decision-Making</h2>
+    <p>We do not engage in automated decision-making or profiling, as defined under Article 22 of the GDPR, that produces legal effects concerning you or significantly affects you.</p>
   </section>
 
-  <section>
-    <h2>Children's privacy</h2>
-    <p>Coople is not directed at children and is not intended for use by anyone under 16. We do not knowingly collect information from children. If you believe a child has used Coople and shared information with us, contact <a href="mailto:hello@coople.app">hello@coople.app</a> and we'll remove it.</p>
+  <section id="changes">
+    <h2><span class="num">14.</span> Changes to This Policy</h2>
+    <p>We may update this Policy from time to time to reflect changes in our practices, the App's functionality, or applicable law. Material changes will be reflected by an updated "Effective date" at the top of this page and, where appropriate, accompanied by an in-app notice. Your continued use of the App after such changes take effect constitutes your acknowledgment of the revised Policy.</p>
   </section>
 
-  <section>
-    <h2>Security</h2>
-    <p>Content is transmitted and stored using Apple's CloudKit infrastructure, which applies encryption in transit and at rest, and ties access to your iCloud account. No method of transmission or storage is perfectly secure, but we rely on the same infrastructure Apple uses across its own apps.</p>
+  <section id="authority">
+    <h2><span class="num">15.</span> Supervisory Authority</h2>
+    <p>If you are located in the European Economic Area and believe our processing of your Personal Data infringes applicable data protection law, you have the right to lodge a complaint with your local supervisory authority. As our principal place of operation is Romania, you may also contact:</p>
+    <p>
+      <strong>Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal (ANSPDCP)</strong><br>
+      B-dul G-ral. Gheorghe Magheru 28-30, Sector 1, Bucharest, Romania<br>
+      <a href="https://www.dataprotection.ro" target="_blank" rel="noopener">www.dataprotection.ro</a>
+    </p>
+    <div class="legal-note">This contact is provided for your convenience and does not limit your right to lodge a complaint with the supervisory authority of your own EEA member state of residence, place of work, or place of the alleged infringement.</div>
   </section>
 
-  <section>
-    <h2>Changes to this policy</h2>
-    <p>If we make material changes to this policy, we'll update the effective date above and, where appropriate, notify you within the app.</p>
-  </section>
-
-  <section>
-    <h2>Contact</h2>
-    <p>Questions about this policy or your data: <a href="mailto:hello@coople.app">hello@coople.app</a></p>
+  <section id="contact">
+    <h2><span class="num">16.</span> Contact Us</h2>
+    <p>Questions, requests, or complaints regarding this Policy or our data practices should be directed to:</p>
+    <p><strong>Astro Developments</strong><br>
+    Email: <a href="mailto:slime.match3@gmail.com">slime.match3@gmail.com</a></p>
   </section>
 
 </main>

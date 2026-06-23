@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>terms &amp; conditions — coople</title>
-<meta name="description" content="The terms and conditions for using Coople.">
+<meta name="description" content="The terms and conditions governing use of Coople.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💕</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,12 +39,15 @@
   .eyebrow{ font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blush-deep); }
   h1{ font-family:'Fraunces', serif; font-weight: 600; font-size: clamp(32px, 5vw, 44px); margin: 14px 0 6px; }
   .updated{ font-size: 14px; color: var(--text-on-paper-muted); }
+  .updated strong{ color: var(--text-on-paper); }
 
   main{ padding-bottom: 90px; }
-  section{ margin-bottom: 38px; }
-  h2{ font-family:'Fraunces', serif; font-weight: 600; font-size: 22px; margin: 0 0 14px; }
-  p, li{ font-size: 16px; line-height: 1.7; color: var(--text-on-paper); margin: 0 0 14px; }
-  ul{ padding-left: 20px; margin: 0 0 14px; }
+  section{ margin-bottom: 42px; }
+  h2{ font-family:'Fraunces', serif; font-weight: 600; font-size: 23px; margin: 0 0 14px; display:flex; gap:10px; align-items:baseline; }
+  h2 .num{ color: var(--blush-deep); font-family:'Inter',sans-serif; font-weight:700; font-size:16px; }
+  h3{ font-size: 17px; font-weight: 600; margin: 22px 0 10px; }
+  p, li{ font-size: 16px; line-height: 1.75; color: var(--text-on-paper); margin: 0 0 14px; }
+  ul, ol{ padding-left: 22px; margin: 0 0 14px; }
   li{ margin-bottom: 8px; }
   strong{ font-weight: 600; }
 
@@ -56,6 +59,28 @@
     margin: 0 0 38px;
   }
   .callout p{ margin:0; font-size: 15px; color: var(--text-on-paper-muted); }
+
+  .toc{
+    background: var(--paper-card);
+    border: 1px solid rgba(42,37,48,0.08);
+    border-radius: 16px;
+    padding: 26px 28px;
+    margin: 0 0 44px;
+  }
+  .toc h2{ font-size: 16px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-on-paper-muted); margin-bottom: 14px; font-family:'Inter',sans-serif; }
+  .toc ol, .toc ul{ columns: 2; column-gap: 28px; padding-left: 18px; }
+  .toc li{ font-size: 14px; margin-bottom: 9px; break-inside: avoid; list-style: none; }
+  .toc a{ color: var(--text-on-paper); text-decoration: none; }
+  .toc a:hover{ color: var(--blush-deep); }
+  @media (max-width: 600px){ .toc ol, .toc ul{ columns: 1; } }
+
+  .legal-note{
+    border-left: 3px solid var(--blush);
+    padding: 4px 0 4px 18px;
+    margin: 18px 0;
+    font-size: 14px;
+    color: var(--text-on-paper-muted);
+  }
 
   footer{ background: var(--paper); padding: 36px 0 44px; border-top: 1px solid rgba(42,37,48,0.10); }
   .footer-inner{ max-width:760px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px; color: var(--text-on-paper-muted); }
@@ -78,81 +103,150 @@
 <header class="doc-head container">
   <p class="eyebrow">legal</p>
   <h1>terms &amp; conditions</h1>
-  <p class="updated">effective June 20, 2026</p>
+  <p class="updated">Effective date: <strong>June 21, 2026</strong> &nbsp;·&nbsp; Last reviewed: <strong>June 21, 2026</strong></p>
 </header>
 
 <main class="container">
 
   <div class="callout">
-    <p>By downloading or using Coople, you agree to these terms. Read the privacy policy too — it explains what data we collect alongside these rules for using the app.</p>
+    <p><strong>Plain-language summary</strong> (this does not replace the terms below): Coople pairs exactly two people. You keep ownership of what you send. Don't use the App for anything illegal, abusive, or commercial. The App depends on Apple's infrastructure and is provided "as is." These Terms are governed by the laws referenced in Section 16.</p>
   </div>
 
-  <section>
-    <h2>1. Acceptance of terms</h2>
-    <p>These terms form an agreement between you and Astro Developments ("we", "us"), the maker of Coople. By creating a pairing or otherwise using the app, you agree to be bound by them. If you don't agree, please don't use Coople.</p>
-  </section>
-
-  <section>
-    <h2>2. What Coople is</h2>
-    <p>Coople is a lock screen companion app that lets exactly two paired people share photos, drawings, and status updates with one another. It's designed for personal, non-commercial use between two individuals.</p>
-  </section>
-
-  <section>
-    <h2>3. Eligibility</h2>
-    <p>You must be at least 16 years old to use Coople. By using the app, you confirm that you meet this requirement. Coople also requires an active iCloud account, which carries its own eligibility requirements set by Apple.</p>
-  </section>
-
-  <section>
-    <h2>4. Pairing</h2>
-    <p>Coople connects exactly two people via a one-time invite code. You're responsible for who you share your code with — anyone who enters it will be paired with you. We aren't able to verify the real-world identity of either person in a pairing.</p>
-  </section>
-
-  <section>
-    <h2>5. Acceptable use</h2>
-    <p>You agree not to use Coople to:</p>
+  <nav class="toc" aria-label="Table of contents">
+    <h2>Contents</h2>
     <ul>
-      <li>Send content that is illegal, harassing, threatening, or abusive</li>
-      <li>Send content that infringes someone else's copyright or other rights</li>
-      <li>Attempt to access another pairing that isn't yours</li>
-      <li>Interfere with or disrupt the app's infrastructure or service</li>
-      <li>Use the app for any commercial purpose without our written permission</li>
+      <li><a href="#acceptance">1. Acceptance of Terms</a></li>
+      <li><a href="#definitions">2. Definitions</a></li>
+      <li><a href="#eligibility">3. Eligibility</a></li>
+      <li><a href="#service">4. The Service</a></li>
+      <li><a href="#pairing">5. Account Registration &amp; Pairing</a></li>
+      <li><a href="#license">6. License Grant</a></li>
+      <li><a href="#content">7. User Content</a></li>
+      <li><a href="#location">8. Location Services</a></li>
+      <li><a href="#acceptableuse">9. Acceptable Use</a></li>
+      <li><a href="#thirdparty">10. Third-Party Services</a></li>
+      <li><a href="#ip">11. Intellectual Property</a></li>
+      <li><a href="#disclaimers">12. Disclaimers of Warranties</a></li>
+      <li><a href="#liability">13. Limitation of Liability</a></li>
+      <li><a href="#indemnification">14. Indemnification</a></li>
+      <li><a href="#termination">15. Term &amp; Termination</a></li>
+      <li><a href="#governing">16. Governing Law &amp; Disputes</a></li>
+      <li><a href="#misc">17. General Provisions</a></li>
+      <li><a href="#changes">18. Changes to These Terms</a></li>
+      <li><a href="#contact">19. Contact Information</a></li>
     </ul>
-    <p>We reserve the right to suspend or terminate access for anyone who violates these terms.</p>
+  </nav>
+
+  <section id="acceptance">
+    <h2><span class="num">1.</span> Acceptance of Terms</h2>
+    <p>These Terms and Conditions ("Terms") constitute a legally binding agreement between you and Astro Developments ("Astro Developments," "we," "us," or "our") governing your access to and use of the mobile application Coople and any related services (collectively, the "Service"). By downloading, accessing, or using the Service, you agree to be bound by these Terms and by our <a href="privacy.html">Privacy Policy</a>, which is incorporated herein by reference. If you do not agree to these Terms, you must not access or use the Service.</p>
   </section>
 
-  <section>
-    <h2>6. Your content</h2>
-    <p>You retain ownership of the photos, drawings, and other content you create and send through Coople. By sending content, you grant us a limited license to store and transmit it solely for the purpose of delivering it to your paired partner. We don't use your content for any other purpose, and we don't claim ownership of it.</p>
+  <section id="definitions">
+    <h2><span class="num">2.</span> Definitions</h2>
+    <p>"Pairing" means the one-to-one connection between two Users established via a unique invitation code. "Content" means any photograph, drawing, status indicator, avatar selection, or other material transmitted through the Service. "User," "you," refers to any natural person who downloads, accesses, or uses the Service.</p>
   </section>
 
-  <section>
-    <h2>7. Service availability</h2>
-    <p>Coople is provided on an "as is" and "as available" basis. The app depends on Apple's iCloud, CloudKit, and push notification infrastructure, which we don't control — outages or changes on Apple's side may affect Coople's availability or functionality. We don't guarantee uninterrupted or error-free service.</p>
+  <section id="eligibility">
+    <h2><span class="num">3.</span> Eligibility</h2>
+    <p>You must be at least sixteen (16) years of age to use the Service. By using the Service, you represent and warrant that you meet this age requirement and that you have the legal capacity to enter into these Terms. The Service additionally requires an active Apple ID / iCloud account in good standing, which is subject to Apple's own eligibility terms and is entirely outside our control.</p>
   </section>
 
-  <section>
-    <h2>8. Termination</h2>
-    <p>You can stop using Coople at any time, and you can request deletion of your data as described in our <a href="privacy.html">privacy policy</a>. We may suspend or terminate your access if we reasonably believe you've violated these terms.</p>
+  <section id="service">
+    <h2><span class="num">4.</span> The Service</h2>
+    <p>Coople is a companion application that enables exactly two paired Users to share photographs, hand-drawn sketches, brief status indicators, and an animal-avatar selection, which are rendered on each User's lock screen and home screen widgets via Apple's WidgetKit framework. The Service is designed for personal, non-commercial use between two individuals and is not a general-purpose messaging, social-networking, or broadcast platform.</p>
   </section>
 
-  <section>
-    <h2>9. Disclaimer of warranties</h2>
-    <p>To the fullest extent permitted by law, we make no warranties of any kind, express or implied, regarding Coople, including warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+  <section id="pairing">
+    <h2><span class="num">5.</span> Account Registration &amp; Pairing</h2>
+    <p>The Service does not require the creation of a traditional username/password account; instead, identity is derived from your device's authenticated iCloud session. A Pairing is established when one User generates a single-use invitation code and a second User redeems it. You are solely responsible for the security of your invitation code and for any consequences arising from sharing it with an unintended recipient. We are not able to verify the real-world identity of either participant in a Pairing and disclaim all liability arising from mistaken or fraudulent pairings, to the maximum extent permitted by applicable law.</p>
   </section>
 
-  <section>
-    <h2>10. Limitation of liability</h2>
-    <p>To the fullest extent permitted by law, Astro Developments will not be liable for any indirect, incidental, special, or consequential damages arising from your use of, or inability to use, Coople.</p>
+  <section id="license">
+    <h2><span class="num">6.</span> License Grant</h2>
+    <p>Subject to your compliance with these Terms, Astro Developments grants you a limited, non-exclusive, non-transferable, revocable license to download, install, and use the Service on a compatible Apple device that you own or control, solely for your personal, non-commercial use. This license does not grant you any right to reproduce, distribute, reverse-engineer, decompile, modify, or create derivative works of the Service, except to the extent such restriction is prohibited by applicable law.</p>
   </section>
 
-  <section>
-    <h2>11. Changes to these terms</h2>
-    <p>We may update these terms from time to time. If we make material changes, we'll update the effective date above. Continuing to use Coople after changes take effect means you accept the updated terms.</p>
+  <section id="content">
+    <h2><span class="num">7.</span> User Content</h2>
+    <p>As between you and Astro Developments, you retain all right, title, and interest in and to the Content you create and transmit through the Service. By submitting Content, you grant Astro Developments a limited, worldwide, royalty-free license to host, store, transmit, and display that Content solely as necessary to operate the Service — that is, to deliver it to your paired partner. This license terminates when the relevant Content is deleted, subject to standard backup and caching periods. We do not claim ownership of your Content, do not use it for any purpose beyond delivering the Service, and do not grant any third party rights to it.</p>
+    <p>You represent and warrant that you own or otherwise have the necessary rights to any Content you submit, and that such Content does not infringe the intellectual property, privacy, or other rights of any third party, and does not violate any applicable law.</p>
   </section>
 
-  <section>
-    <h2>12. Contact</h2>
-    <p>Questions about these terms: <a href="mailto:hello@coople.app">hello@coople.app</a></p>
+  <section id="location">
+    <h2><span class="num">8.</span> Location Services</h2>
+    <p>The Service offers an optional feature that displays the approximate distance between paired Users. This feature requires your affirmative grant of "When In Use" location permission through Apple's system-level prompt. Location data collected for this purpose is rounded to reduce precision and is processed as described in our <a href="privacy.html">Privacy Policy</a>. You may decline or revoke this permission at any time through your device Settings without affecting your ability to use any other feature of the Service.</p>
+  </section>
+
+  <section id="acceptableuse">
+    <h2><span class="num">9.</span> Acceptable Use</h2>
+    <p>You agree that you will not, and will not assist or permit any third party to:</p>
+    <ul>
+      <li>Use the Service to transmit Content that is unlawful, defamatory, harassing, threatening, abusive, hateful, or that exploits or endangers minors in any way;</li>
+      <li>Transmit Content that infringes any patent, trademark, trade secret, copyright, right of publicity or privacy, or other proprietary right of any party;</li>
+      <li>Attempt to gain unauthorized access to a Pairing, account, or any portion of the Service not intended for you;</li>
+      <li>Reverse-engineer, decompile, disassemble, or otherwise attempt to derive the source code of the Service, except as permitted by applicable law notwithstanding this restriction;</li>
+      <li>Interfere with, disrupt, or impose an unreasonable load on the infrastructure used to operate the Service, including Apple's CloudKit and push-notification systems;</li>
+      <li>Use the Service for any commercial, promotional, or advertising purpose without our prior written consent;</li>
+      <li>Use the Service in any manner that violates applicable local, national, or international law or regulation.</li>
+    </ul>
+    <p>We reserve the right, but assume no obligation, to monitor use of the Service and to remove Content or suspend or terminate access for any User who, in our reasonable judgment, violates this Section.</p>
+  </section>
+
+  <section id="thirdparty">
+    <h2><span class="num">10.</span> Third-Party Services</h2>
+    <p>The Service is built on, and entirely dependent upon, infrastructure operated by Apple Inc., including iCloud, CloudKit, and the Apple Push Notification service ("APNs"). Your use of the Service is also subject to Apple's Media Services Terms and any applicable End User License Agreement presented through the App Store. We do not control, and are not responsible for, the availability, performance, security, or any acts or omissions of Apple's infrastructure. Interruptions, outages, or policy changes on Apple's part may affect the availability or functionality of the Service, and we disclaim liability for any such interruption to the fullest extent permitted by law.</p>
+  </section>
+
+  <section id="ip">
+    <h2><span class="num">11.</span> Intellectual Property</h2>
+    <p>Excluding User Content, the Service — including its design, "Coople" name and logo, source code, visual interface elements, and all associated intellectual property — is owned by Astro Developments and is protected by applicable copyright, trademark, and other intellectual-property laws. No rights are granted to you in or to the Service other than the limited license expressly set out in Section 6.</p>
+  </section>
+
+  <section id="disclaimers">
+    <h2><span class="num">12.</span> Disclaimers of Warranties</h2>
+    <p>THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED, TIMELY, SECURE, OR ERROR-FREE, OR THAT ANY DEFECTS WILL BE CORRECTED. NOTHING IN THIS SECTION LIMITS ANY WARRANTY THAT CANNOT BE EXCLUDED OR LIMITED UNDER APPLICABLE LAW, INCLUDING STATUTORY CONSUMER-PROTECTION RIGHTS AVAILABLE TO YOU UNDER THE LAWS OF YOUR COUNTRY OF RESIDENCE.</p>
+  </section>
+
+  <section id="liability">
+    <h2><span class="num">13.</span> Limitation of Liability</h2>
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL ASTRO DEVELOPMENTS, ITS FOUNDER, OR ANY AFFILIATED PARTY BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, GOODWILL, OR OTHER INTANGIBLE LOSSES, ARISING OUT OF OR RELATED TO YOUR USE OF, OR INABILITY TO USE, THE SERVICE, REGARDLESS OF THE LEGAL THEORY ON WHICH SUCH DAMAGES ARE BASED AND EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. TO THE EXTENT ANY LIABILITY IS NOT VALIDLY EXCLUDABLE UNDER APPLICABLE LAW, OUR AGGREGATE LIABILITY FOR ALL CLAIMS RELATING TO THE SERVICE SHALL NOT EXCEED THE GREATER OF (A) THE AMOUNT YOU PAID, IF ANY, TO USE THE SERVICE IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM, OR (B) FIFTY EUROS (€50). NOTHING IN THESE TERMS EXCLUDES OR LIMITS LIABILITY FOR DEATH, PERSONAL INJURY, OR FRAUD CAUSED BY OUR NEGLIGENCE, WHERE SUCH EXCLUSION WOULD BE UNLAWFUL.</p>
+  </section>
+
+  <section id="indemnification">
+    <h2><span class="num">14.</span> Indemnification</h2>
+    <p>You agree to indemnify, defend, and hold harmless Astro Developments and its founder from and against any claims, liabilities, damages, losses, and expenses, including reasonable legal fees, arising out of or in any way connected with: (a) your access to or use of the Service; (b) your Content; (c) your violation of these Terms; or (d) your violation of any rights of a third party, including another User.</p>
+  </section>
+
+  <section id="termination">
+    <h2><span class="num">15.</span> Term &amp; Termination</h2>
+    <p>These Terms remain in effect for as long as you use the Service. You may stop using the Service, and request deletion of your data, at any time as described in our <a href="privacy.html">Privacy Policy</a>. We may suspend or terminate your access to the Service, in whole or in part, with or without notice, if we reasonably believe you have violated these Terms, or for any other reason at our discretion where permitted by applicable law. Sections 7, 11, 12, 13, 14, 16, and 17 shall survive any termination of these Terms.</p>
+  </section>
+
+  <section id="governing">
+    <h2><span class="num">16.</span> Governing Law &amp; Disputes</h2>
+    <p>These Terms shall be governed by and construed in accordance with the laws of Romania, without regard to its conflict-of-laws principles, save that nothing in this Section deprives a consumer resident in the European Union of the protection afforded by the mandatory consumer-protection provisions of the law of their country of habitual residence. Any dispute arising out of or relating to these Terms or the Service shall first be addressed in good faith through informal negotiation by contacting us at the email address in Section 19. If a dispute cannot be resolved informally within thirty (30) days, it shall be submitted to the competent courts of Romania, without prejudice to any mandatory right you may have to bring proceedings in the courts of your own country of residence under applicable consumer-protection law. If you are a consumer resident in the EU, you may also be entitled to use the European Commission's Online Dispute Resolution platform.</p>
+    <div class="legal-note">This Section reflects the developer's place of establishment at the time of writing and is provided as a general framework; it does not constitute legal advice and should be reviewed by qualified counsel prior to relying on it in a dispute.</div>
+  </section>
+
+  <section id="misc">
+    <h2><span class="num">17.</span> General Provisions</h2>
+    <p><strong>Severability.</strong> If any provision of these Terms is held to be invalid or unenforceable, that provision shall be limited or eliminated to the minimum extent necessary, and the remaining provisions shall remain in full force and effect.</p>
+    <p><strong>Entire Agreement.</strong> These Terms, together with our Privacy Policy, constitute the entire agreement between you and Astro Developments regarding the Service and supersede all prior or contemporaneous understandings.</p>
+    <p><strong>No Waiver.</strong> Our failure to enforce any right or provision of these Terms shall not be deemed a waiver of such right or provision.</p>
+    <p><strong>Assignment.</strong> You may not assign or transfer these Terms without our prior written consent. We may assign these Terms without restriction, including in connection with a merger, acquisition, or sale of assets.</p>
+    <p><strong>Force Majeure.</strong> We shall not be liable for any failure or delay in performance resulting from causes beyond our reasonable control, including outages or policy changes affecting Apple's infrastructure.</p>
+  </section>
+
+  <section id="changes">
+    <h2><span class="num">18.</span> Changes to These Terms</h2>
+    <p>We may revise these Terms from time to time. If we make material changes, we will update the "Effective date" above and, where appropriate, provide notice within the App. Your continued use of the Service after such changes take effect constitutes your acceptance of the revised Terms. If you do not agree to the revised Terms, you must stop using the Service.</p>
+  </section>
+
+  <section id="contact">
+    <h2><span class="num">19.</span> Contact Information</h2>
+    <p><strong>Astro Developments</strong><br>
+    Email: <a href="mailto:slime.match3@gmail.com">slime.match3@gmail.com</a></p>
   </section>
 
 </main>
